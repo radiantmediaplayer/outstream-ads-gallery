@@ -1,0 +1,66 @@
+@charset "utf-8";
+
+#sticky-container {
+  position: fixed;
+  bottom: 8px;
+  right: 8px;
+  width: 256px;
+  height: 144px;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition-property: opacity, visibility;
+  -moz-transition-property: opacity, visibility;
+  transition-property: opacity, visibility;
+  -webkit-transition-duration: .4s;
+  -moz-transition-duration: .4s;
+  transition-duration: .4s;
+  -webkit-transition-timing-function: ease-in;
+  -moz-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+  box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.3);
+}
+
+.rmp-outline .rmp-play-pause,
+.rmp-outline .rmp-ad-info,
+.rmp-outline .rmp-volume,
+.rmp-overlay-button,
+.rmp-mobile-central-ui {
+  display: none !important;
+}
+
+.rmp-mobile .rmp-outline .rmp-volume {
+  display: block !important;
+}
+
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+
+@media (min-width: 375px) {
+  #sticky-container {
+    bottom: 16px;
+    right: 16px;
+    width: 320px;
+    height: 180px;
+  }
+}
+
+@media (min-width: 480px) {
+  #sticky-container {
+    bottom: 20px;
+    right: 20px;
+    width: 384px;
+    height: 216px;
+  }
+}
+
+@media (min-width: 640px) {
+  #sticky-container {
+    width: 512px;
+    height: 288px;
+  }
+}

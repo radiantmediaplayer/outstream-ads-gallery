@@ -1,1 +1,20 @@
 # outstream-ads-gallery
+
+outstream-ads-gallery is an open-source collection of usage examples for outstream video ads with [Radiant Media Player](https://www.radiantmediaplayer.com).
+
+## Examples
+- Basic outstream video ad set-up: see it live here
+- One-shot outstream video ad set-up: see it live here
+- Sticky outstream video ad set-up: see it live here
+- In-article outstream video ad set-up: see it live here
+
+## Usage
+Review each corresponding folder for player code examples. Adapt it to your project requirement.
+
+## Issues
+Issues should be submitted in this GitHub page. We will do our best to review them.
+
+## License
+outstream-ads-gallery examples are released under MIT
+
+Radiant Media Player is a commercial HTML5 video player and has its own license which can be found here: [https://www.radiantmediaplayer.com/terms-of-service.html](https://www.radiantmediaplayer.com/terms-of-service.html)
