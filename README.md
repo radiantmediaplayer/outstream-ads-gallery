@@ -11,6 +11,10 @@ outstream-ads-gallery is an open-source collection of usage examples for outstre
 ## Usage
 Review each corresponding folder for player code examples. Adapt it to your project requirement.
 
+## Complying with the [Initial Better Ads Standards](https://www.betterads.org/standards/) from the Coalition for Better Ads
+Auto-playing outstream video ads with sound is a least preferred ad experience for both desktop and mobile 
+web. As such when autoplay of outstream video ads is requested with Radiant Media Player it default to muted autoplay. See [our docs](https://www.radiantmediaplayer.com/docs/latest/outstream-video-ads.html#player-settings) for more information.
+
 ## Issues
 Issues should be submitted in this GitHub page. We will do our best to review them.
 

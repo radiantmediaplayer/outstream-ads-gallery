@@ -116,4 +116,9 @@
     window.addEventListener('scroll', _onScrollPauseOrPlay);
   });
 
+  // on autoplay failure we remove player from DOM
+  container.addEventListener('autoplayfailure', function () {
+    _removePlayer();
+  });
+
 })(); 

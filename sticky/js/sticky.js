@@ -55,12 +55,17 @@
 
   var rmp = new RadiantMP(elementID);
 
-    // if autoplay has been disabled due to lack of device support 
-    // or if Google IMA has been blocked by an ad-blocker or failed to load
-    // we remove the player from DOM before it does anything
   container.addEventListener('ready', function () {
-    if (!rmp.getAutoplayRequested() || rmp.getAdParserBlocked()) {
+    // if Google IMA has been blocked by an ad-blocker or failed to load
+    // we need to remove the player from DOM
+    if (rmp.getAdParserBlocked()) {
       _removePlayer();
+      return;
+    }
+    // if autoplay has been disabled due to lack of device support we show player 
+    // to allow a user interaction to start ad
+    if (!rmp.getAutoplayRequested()) {
+      _showPlayer();
     }
   });
   // on autoplay failure we remove player from DOM
