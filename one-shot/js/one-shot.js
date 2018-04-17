@@ -22,10 +22,11 @@
     adTagUrl: 'https://www.radiantmediaplayer.com/vast/tags/inline-linear-2.xml',
     adTagWaterfall: [
       'https://www.radiantmediaplayer.com/vast/tags/inline-linear-1.xml'
-    ],
+    ]
   };
 
   var rmp = new RadiantMP(elementID);
+  var fw = rmp.getFramework();
 
   // function to fade in player
   var _showPlayer = function () {
@@ -47,7 +48,7 @@
         try {
           parent.removeChild(container);
         } catch (e) {
-          FW.trace(e);
+          fw.trace(e);
         }
       }
     });

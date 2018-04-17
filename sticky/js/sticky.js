@@ -23,22 +23,6 @@
     stickyContainer.style.visibility = 'hidden';
   };
 
-  // function to remove player from DOM in case we are enable to autoplay the ad
-  // or the ad has finished and we need to remove stickyContainer
-  var _removePlayer = function () {
-    container.addEventListener('destroycompleted', function () {
-      var parent = stickyContainer.parentNode;
-      if (parent) {
-        try {
-          parent.removeChild(stickyContainer);
-        } catch (e) {
-          FW.trace(e);
-        }
-      }
-    });
-    rmp.destroy();
-  };
-
   var settings = {
     licenseKey: 'your-license-key',
     ads: true,
@@ -54,6 +38,23 @@
   };
 
   var rmp = new RadiantMP(elementID);
+  var fw = rmp.getFramework();
+
+  // function to remove player from DOM in case we are enable to autoplay the ad
+  // or the ad has finished and we need to remove stickyContainer
+  var _removePlayer = function () {
+    container.addEventListener('destroycompleted', function () {
+      var parent = stickyContainer.parentNode;
+      if (parent) {
+        try {
+          parent.removeChild(stickyContainer);
+        } catch (e) {
+          fw.trace(e);
+        }
+      }
+    });
+    rmp.destroy();
+  };
 
   container.addEventListener('ready', function () {
     // if Google IMA has been blocked by an ad-blocker or failed to load

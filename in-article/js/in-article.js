@@ -45,6 +45,7 @@
   };
 
   var rmp = new RadiantMP(elementID);
+  var fw = rmp.getFramework();
 
   //function to remove player from DOM in case we are enable to autoplay the ad
   var _removePlayer = function () {
@@ -54,7 +55,7 @@
         try {
           parent.removeChild(container);
         } catch (e) {
-          FW.trace(e);
+          fw.trace(e);
         }
       }
     });
