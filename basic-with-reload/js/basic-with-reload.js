@@ -31,7 +31,11 @@
       'https://www.radiantmediaplayer.com/vast/tags/inline-linear-1.xml'
     ]
   };
+  
+  // new player instance
   var rmp = new RadiantMP(elementID);
+  // Radiant Media Player internal framework
+  var fw = rmp.getFramework();
 
   // when destroy method finishes we clear listeners and remove player from DOM
   var _onDestroyCompleted = function () {

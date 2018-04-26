@@ -18,7 +18,6 @@
     licenseKey: 'your-license-key',
     width: 640,
     height: 360,
-    autoplay: true,
     skin: 'outstream',
     autoplay: true,
     ads: true,
@@ -31,7 +30,9 @@
     ]
   };
 
+  // new player instance
   var rmp = new RadiantMP(elementID);
+  // Radiant Media Player internal framework
   var fw = rmp.getFramework();
 
   // when destroy method finishes we clear listeners and remove player from DOM
