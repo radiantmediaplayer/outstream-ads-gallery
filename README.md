@@ -8,6 +8,8 @@ outstream-ads-gallery is an open-source collection of usage examples for outstre
 - Sticky outstream video ad: [see it live here](https://www.radiantmediaplayer.com/docs/latest/gist/outstream-ads-gallery/sticky/)
 - In-article outstream video ad, with ad-reload option on ad completion: [see it live here](https://www.radiantmediaplayer.com/docs/latest/gist/outstream-ads-gallery/in-article/)
 
+Additionally, you may also want to review our [picture in picture player extension](https://github.com/radiantmediaplayer/rmp-detachable-player) that also supports outstream video ads.
+
 ## Usage
 Review each corresponding folder for player code examples. Adapt it to your project requirement.
 
