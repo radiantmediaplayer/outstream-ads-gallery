@@ -17,16 +17,18 @@
 
   var settings = {
     licenseKey: 'your-license-key',
-    ads: true,
-    adTagUrl: 'https://www.radiantmediaplayer.com/vast/tags/inline-linear-2.xml',
-    adTagWaterfall: [
-      'https://www.radiantmediaplayer.com/vast/tags/inline-linear-1.xml'
-    ],
     // we use autoHeightMode and size our stickyContainer with media queries CSS
     autoHeightMode: true,
+    autoplay: true,
+    ads: true,
     adOutStream: true,
     adOutStreamMutedAutoplayVolumeHover: true,
-    skin: 'outstream'
+    skin: 'outstream',
+    adTagUrl: 'https://www.radiantmediaplayer.com/vast/tags/inline-linear-2.xml',
+    // we use client-side waterfalling in this case (optional)
+    adTagWaterfall: [
+      'https://www.radiantmediaplayer.com/vast/tags/inline-linear-1.xml'
+    ]
   };
 
   var rmp = new RadiantMP(elementID);

@@ -20,10 +20,12 @@
     height: 360,
     autoplay: true,
     skin: 'outstream',
+    autoplay: true,
     ads: true,
     adOutStream: true,
-    adOutStreamMutedAutoplay: true,
+    adOutStreamMutedAutoplayVolumeHover: true,
     adTagUrl: 'https://www.radiantmediaplayer.com/vast/tags/inline-linear-2.xml',
+    // we use client-side waterfalling in this case (optional)
     adTagWaterfall: [
       'https://www.radiantmediaplayer.com/vast/tags/inline-linear-1.xml'
     ]

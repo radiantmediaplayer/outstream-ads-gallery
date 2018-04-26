@@ -18,13 +18,15 @@
     licenseKey: 'your-license-key',
     width: 640,
     height: 360,
-    autoplay: true,
     endOfVideoPoster: 'https://www.radiantmediaplayer.com/images/poster-rmp-ads.jpg',
     skin: 'outstream',
+    autoplay: true,
     ads: true,
     adOutStream: true,
+    adOutStreamMutedAutoplay: true,
     adTagReloadOnEnded: true,
     adTagUrl: 'https://www.radiantmediaplayer.com/vast/tags/inline-linear.xml',
+    // we use client-side waterfalling in this case (optional)
     adTagWaterfall: [
       'https://www.radiantmediaplayer.com/vast/tags/inline-linear-1.xml'
     ]
