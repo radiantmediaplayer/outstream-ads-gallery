@@ -18,14 +18,10 @@
     licenseKey: 'your-license-key',
     width: 640,
     height: 360,
+    autoplay: true,
+    endOfVideoPoster: 'https://www.radiantmediaplayer.com/images/poster-rmp-ads.jpg',
     skin: 'outstream',
-    backgroundColor: 'DDDDDD',
     ads: true,
-    // when player comes into view, it will autoplay ...
-    // also player is automatically played/paused when it becomes in/out of view with this option
-    viewablePlayPause: true,
-    // ... well muted autoplay to be precise since this an outstream ad
-    muted: true,
     adOutStream: true,
     adTagReloadOnEnded: true,
     adTagUrl: 'https://www.radiantmediaplayer.com/vast/tags/inline-linear.xml',
@@ -33,9 +29,7 @@
       'https://www.radiantmediaplayer.com/vast/tags/inline-linear-1.xml'
     ]
   };
-
   var rmp = new RadiantMP(elementID);
-  var fw = rmp.getFramework();
 
   // when destroy method finishes we clear listeners and remove player from DOM
   var _onDestroyCompleted = function () {
@@ -60,28 +54,18 @@
     rmp.destroy();
   };
 
-  // function to fade in player
-  var _showPlayer = function () {
-    container.style.opacity = 1;
-    container.style.visibility = 'visible';
-  };
-
-  // if Google IMA has been blocked by an ad-blocker or failed to load
-  // we need to remove the player from DOM
   container.addEventListener('ready', function () {
+    // if Google IMA has been blocked by an ad-blocker or failed to load
+    // we need to remove the player from DOM
     if (rmp.getAdParserBlocked()) {
       _removePlayer();
       return;
     }
   });
-
-  // on autoplay failure we remove player from DOM
+  // in case of autoplayfailure event we need to remove player from DOM
   container.addEventListener('autoplayfailure', _removePlayer);
-
-  // show player on adstarted for nicer presentation to viewer
-  container.addEventListener('adstarted', _showPlayer);
 
   // init player after wiring events
   rmp.init(settings);
 
-})(); 
+})();

@@ -3,10 +3,10 @@
 outstream-ads-gallery is an open-source collection of usage examples for outstream video ads with [Radiant Media Player](https://www.radiantmediaplayer.com).
 
 ## Examples
-- Basic outstream video ad set-up: [see it live here](https://www.radiantmediaplayer.com/docs/latest/gist/outstream-ads-gallery/basic/)
-- One-shot outstream video ad set-up: [see it live here](https://www.radiantmediaplayer.com/docs/latest/gist/outstream-ads-gallery/one-shot/)
-- Sticky outstream video ad set-up: [see it live here](https://www.radiantmediaplayer.com/docs/latest/gist/outstream-ads-gallery/sticky/)
-- In-article outstream video ad set-up: [see it live here](https://www.radiantmediaplayer.com/docs/latest/gist/outstream-ads-gallery/in-article/)
+- Basic outstream video ad, with ad-reload option on ad completion: [see it live here](https://www.radiantmediaplayer.com/docs/latest/gist/outstream-ads-gallery/basic-with-reload/)
+- One-shot outstream video ad: [see it live here](https://www.radiantmediaplayer.com/docs/latest/gist/outstream-ads-gallery/one-shot/)
+- Sticky outstream video ad: [see it live here](https://www.radiantmediaplayer.com/docs/latest/gist/outstream-ads-gallery/sticky/)
+- In-article outstream video ad, with ad-reload option on ad completion: [see it live here](https://www.radiantmediaplayer.com/docs/latest/gist/outstream-ads-gallery/in-article/)
 
 ## Usage
 Review each corresponding folder for player code examples. Adapt it to your project requirement.

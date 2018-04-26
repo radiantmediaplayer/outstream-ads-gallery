@@ -10,6 +10,10 @@
   var elementID = 'rmpPlayer';
   var container = document.getElementById(elementID);
 
+  if (!container) {
+    return;
+  }
+
   var settings = {
     licenseKey: 'your-license-key',
     width: 640,
@@ -18,7 +22,7 @@
     skin: 'outstream',
     ads: true,
     adOutStream: true,
-    adOutStreamCloseOnEnded: true,
+    adOutStreamMutedAutoplay: true,
     adTagUrl: 'https://www.radiantmediaplayer.com/vast/tags/inline-linear-2.xml',
     adTagWaterfall: [
       'https://www.radiantmediaplayer.com/vast/tags/inline-linear-1.xml'
@@ -28,6 +32,40 @@
   var rmp = new RadiantMP(elementID);
   var fw = rmp.getFramework();
 
+  // when destroy method finishes we clear listeners and remove player from DOM
+  var _onDestroyCompleted = function () {
+    container.removeEventListener('destroyerror', _onDestroyCompleted);
+    container.removeEventListener('destroycompleted', _onDestroyCompleted);
+    var parent = container.parentNode;
+    if (parent) {
+      try {
+        parent.removeChild(container);
+      } catch (e) {
+        fw.trace(e);
+      }
+    }
+    // we also remove sponsor message in this case (optional)
+    var sponsorMessage = document.getElementById('sponsor-message');
+    if (sponsorMessage) {
+      var parentSponsorMessage = sponsorMessage.parentNode;
+      if (parentSponsorMessage) {
+        try {
+          parentSponsorMessage.removeChild(sponsorMessage);
+        } catch (e) {
+          fw.trace(e);
+        }
+      }
+    }
+  };
+
+  // player needs be removed from page 
+  // first we need to destroy it
+  var _removePlayer = function () {
+    container.addEventListener('destroyerror', _onDestroyCompleted);
+    container.addEventListener('destroycompleted', _onDestroyCompleted);
+    rmp.destroy();
+  };
+
   // function to fade in player
   var _showPlayer = function () {
     container.style.opacity = 1;
@@ -35,24 +73,14 @@
   };
 
   // function to fade out player
-  var _hidePlayer = function () {
+  var _endPlayer = function () {
+    container.removeEventListener('autoplayfailure', _endPlayer);
+    container.removeEventListener('adcontentresumerequested', _endPlayer);
     container.style.opacity = 0;
     container.style.visibility = 'hidden';
-  };
-
-  //function to remove player from DOM in case we are enable to autoplay the ad
-  var _removePlayer = function () {
-    container.addEventListener('destroycompleted', function () {
-      var parent = container.parentNode;
-      if (parent) {
-        try {
-          parent.removeChild(container);
-        } catch (e) {
-          fw.trace(e);
-        }
-      }
-    });
-    rmp.destroy();
+    setTimeout(function () {
+      _removePlayer();
+    }, 400);
   };
 
   container.addEventListener('ready', function () {
@@ -68,19 +96,16 @@
       _showPlayer();
     }
   });
-  // on autoplay failure we remove player from DOM
-  container.addEventListener('autoplayfailure', function () {
-    _removePlayer();
-  });
-  // on ad starte we fade in player
+  // on adstarted we show player
   container.addEventListener('adstarted', function () {
     _showPlayer();
   });
-  // when ad ends we fade out player
-  // it will automatically be removed with adOutStreamCloseOnEnded setting
-  container.addEventListener('adcontentresumerequested', function () {
-    _hidePlayer();
-  });
+  // when ad ends - adcontentresumerequested event - we fade out player and remove it from DOM
+  // in case of autoplayfailure event we also need to remove it - note that autoplayfailure should 
+  // be infrequent if you are using muted autoplay as recommended
+  // whichever comes first
+  container.addEventListener('autoplayfailure', _endPlayer);
+  container.addEventListener('adcontentresumerequested', _endPlayer);
 
   rmp.init(settings);
 

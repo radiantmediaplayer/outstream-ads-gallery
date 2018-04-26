@@ -11,17 +11,9 @@
   var container = document.getElementById(elementID);
   var stickyContainer = document.getElementById('sticky-container');
 
-  // function to fade in sticky container
-  var _showPlayer = function () {
-    stickyContainer.style.opacity = 1;
-    stickyContainer.style.visibility = 'visible';
-  };
-
-  // function to fade out sticky container
-  var _hidePlayer = function () {
-    stickyContainer.style.opacity = 0;
-    stickyContainer.style.visibility = 'hidden';
-  };
+  if (!container || !stickyContainer) {
+    return;
+  }
 
   var settings = {
     licenseKey: 'your-license-key',
@@ -40,21 +32,45 @@
   var rmp = new RadiantMP(elementID);
   var fw = rmp.getFramework();
 
-  // function to remove player from DOM in case we are enable to autoplay the ad
-  // or the ad has finished and we need to remove stickyContainer
-  var _removePlayer = function () {
-    container.addEventListener('destroycompleted', function () {
-      var parent = stickyContainer.parentNode;
-      if (parent) {
-        try {
-          parent.removeChild(stickyContainer);
-        } catch (e) {
-          fw.trace(e);
-        }
+  // when destroy method finishes we clear listeners and remove stickyContainer from DOM
+  var _onDestroyCompleted = function () {
+    container.removeEventListener('destroyerror', _onDestroyCompleted);
+    container.removeEventListener('destroycompleted', _onDestroyCompleted);
+    var parent = stickyContainer.parentNode;
+    if (parent) {
+      try {
+        parent.removeChild(stickyContainer);
+      } catch (e) {
+        fw.trace(e);
       }
-    });
+    }
+  };
+
+  // stickyContainer needs be removed from page 
+  // first we need to destroy it
+  var _removePlayer = function () {
+    container.addEventListener('destroyerror', _onDestroyCompleted);
+    container.addEventListener('destroycompleted', _onDestroyCompleted);
     rmp.destroy();
   };
+
+  // function to fade in sticky container
+  var _showPlayer = function () {
+    stickyContainer.style.opacity = 1;
+    stickyContainer.style.visibility = 'visible';
+  };
+
+  // function to fade out sticky container
+  var _endPlayer = function () {
+    container.removeEventListener('autoplayfailure', _endPlayer);
+    container.removeEventListener('adcontentresumerequested', _endPlayer);
+    stickyContainer.style.opacity = 0;
+    stickyContainer.style.visibility = 'hidden';
+    setTimeout(function () {
+      _removePlayer();
+    }, 400);
+  };
+
 
   container.addEventListener('ready', function () {
     // if Google IMA has been blocked by an ad-blocker or failed to load
@@ -69,21 +85,16 @@
       _showPlayer();
     }
   });
-  // on autoplay failure we remove player from DOM
-  container.addEventListener('autoplayfailure', function () {
-    _removePlayer();
-  });
-  // we have an ad start - we fade in player
+  // we have adstarted - we fade in player
   container.addEventListener('adstarted', function () {
     _showPlayer();
   });
-  // ad has finished we fade out player, then remove it
-  container.addEventListener('adcontentresumerequested', function () {
-    _hidePlayer();
-    setTimeout(function () {
-      _removePlayer();
-    }, 400);
-  });
+  // when ad ends - adcontentresumerequested event - we fade out player and remove it from DOM
+  // in case of autoplayfailure event we also need to remove it - note that autoplayfailure should 
+  // be infrequent if you are using muted autoplay as recommended
+  // whichever comes first
+  container.addEventListener('autoplayfailure', _endPlayer);
+  container.addEventListener('adcontentresumerequested', _endPlayer);
 
   rmp.init(settings);
 

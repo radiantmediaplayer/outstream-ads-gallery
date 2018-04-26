@@ -12,6 +12,7 @@
   <link rel="icon" type="image/png" href="/images/radiantmediaplayer-icon.png">
   <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link href="css/one-shot.css" rel="stylesheet" type="text/css">
   <script>
     (function (i, s, o, g, r, a, m) {
       i['GoogleAnalyticsObject'] = r;
@@ -28,28 +29,7 @@
     ga('send', 'pageview');
   </script>
   <style>
-    .margin-top-20 {
-      margin-top: 20px;
-    }
-
-    .margin-bottom-20 {
-      margin-bottom: 20px;
-    }
-
-    #rmpPlayer {
-      margin: auto;
-      visibility: hidden;
-      opacity: 0;
-      -webkit-transition-property: opacity, visibility;
-      -moz-transition-property: opacity, visibility;
-      transition-property: opacity, visibility;
-      -webkit-transition-duration: .4s;
-      -moz-transition-duration: .4s;
-      transition-duration: .4s;
-      -webkit-transition-timing-function: ease-in;
-      -moz-transition-timing-function: ease-in;
-      transition-timing-function: ease-in;
-    }
+   
   </style>
 </head>
 
@@ -84,7 +64,7 @@
     <div class="row margin-bottom-20">
       <div class="col-sm-12">
         <div class="text-center">
-          <h4>
+          <h4 id="sponsor-message">
             <em>A quick message from our sponsor</em>
           </h4>
         </div>
