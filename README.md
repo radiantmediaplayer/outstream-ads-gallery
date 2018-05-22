@@ -11,7 +11,7 @@ outstream-ads-gallery is an open-source collection of usage examples for outstre
 Additionally, you may also want to review our [picture in picture player extension](https://github.com/radiantmediaplayer/rmp-detachable-player) that also supports outstream video ads.
 
 ## Usage
-Review each corresponding folder for player code examples. Adapt it to your project requirement.
+Download latest release from releases tab. Review each corresponding folder for player code examples. Adapt it to your project requirement.
 
 ## Complying with the [Initial Better Ads Standards](https://www.betterads.org/standards/) from the Coalition for Better Ads
 Auto-playing outstream video ads with sound is a least preferred ad experience for both desktop and mobile 
