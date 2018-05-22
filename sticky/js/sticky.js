@@ -22,8 +22,9 @@
     autoplay: true,
     ads: true,
     adOutStream: true,
-    adOutStreamMutedAutoplayVolumeHover: true,
     skin: 'outstream',
+    // fade-in/fade-out effects are applied on sticky-container so we do not need them on the player 
+    fadeInPlayer: false,
     adTagUrl: 'https://www.radiantmediaplayer.com/vast/tags/inline-linear-2.xml',
     // we use client-side waterfalling in this case (optional)
     adTagWaterfall: [
@@ -90,9 +91,7 @@
     }
   });
   // we have adstarted - we fade in player
-  container.addEventListener('adstarted', function () {
-    _showPlayer();
-  });
+  container.addEventListener('adstarted', _showPlayer);
   // when ad ends - adcontentresumerequested event - we fade out player and remove it from DOM
   // in case of autoplayfailure event we also need to remove it - note that autoplayfailure should 
   // be infrequent if you are using muted autoplay as recommended

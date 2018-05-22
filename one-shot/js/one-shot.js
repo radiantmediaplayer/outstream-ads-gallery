@@ -22,7 +22,6 @@
     autoplay: true,
     ads: true,
     adOutStream: true,
-    adOutStreamMutedAutoplayVolumeHover: true,
     adTagUrl: 'https://www.radiantmediaplayer.com/vast/tags/inline-linear-2.xml',
     // we use client-side waterfalling in this case (optional)
     adTagWaterfall: [
@@ -35,29 +34,26 @@
   // Radiant Media Player internal framework
   var fw = rmp.getFramework();
 
-  // when destroy method finishes we clear listeners and remove player from DOM
-  var _onDestroyCompleted = function () {
-    container.removeEventListener('destroyerror', _onDestroyCompleted);
-    container.removeEventListener('destroycompleted', _onDestroyCompleted);
-    var parent = container.parentNode;
+  var _removeElement = function(element) {
+    var parent = element.parentNode;
     if (parent) {
       try {
-        parent.removeChild(container);
+        parent.removeChild(element);
       } catch (e) {
         fw.trace(e);
       }
     }
+  };
+
+  // when destroy method finishes we clear listeners and remove player from DOM
+  var _onDestroyCompleted = function () {
+    container.removeEventListener('destroyerror', _onDestroyCompleted);
+    container.removeEventListener('destroycompleted', _onDestroyCompleted);
+    _removeElement(container);
     // we also remove sponsor message in this case (optional)
     var sponsorMessage = document.getElementById('sponsor-message');
     if (sponsorMessage) {
-      var parentSponsorMessage = sponsorMessage.parentNode;
-      if (parentSponsorMessage) {
-        try {
-          parentSponsorMessage.removeChild(sponsorMessage);
-        } catch (e) {
-          fw.trace(e);
-        }
-      }
+      _removeElement(sponsorMessage);
     }
   };
 
@@ -69,16 +65,11 @@
     rmp.destroy();
   };
 
-  // function to fade in player
-  var _showPlayer = function () {
-    container.style.opacity = 1;
-    container.style.visibility = 'visible';
-  };
-
   // function to fade out player
   var _endPlayer = function () {
     container.removeEventListener('autoplayfailure', _endPlayer);
     container.removeEventListener('adcontentresumerequested', _endPlayer);
+    // nicely fade out player and remove it from DOM
     container.style.opacity = 0;
     container.style.visibility = 'hidden';
     setTimeout(function () {
@@ -93,15 +84,6 @@
       _removePlayer();
       return;
     }
-    // if autoplay has been disabled due to lack of device support we show player 
-    // to allow a user interaction to start ad
-    if (!rmp.getAutoplayRequested()) {
-      _showPlayer();
-    }
-  });
-  // on adstarted we show player
-  container.addEventListener('adstarted', function () {
-    _showPlayer();
   });
   // when ad ends - adcontentresumerequested event - we fade out player and remove it from DOM
   // in case of autoplayfailure event we also need to remove it - note that autoplayfailure should 

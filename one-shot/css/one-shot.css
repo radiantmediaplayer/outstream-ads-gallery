@@ -1,24 +1,13 @@
 @charset "utf-8";
 
+#rmpPlayer {
+  margin: auto;
+}
+
 .margin-top-20 {
   margin-top: 20px;
 }
 
 .margin-bottom-20 {
   margin-bottom: 20px;
-}
-
-#rmpPlayer {
-  margin: auto;
-  visibility: hidden;
-  opacity: 0;
-  -webkit-transition-property: opacity, visibility;
-  -moz-transition-property: opacity, visibility;
-  transition-property: opacity, visibility;
-  -webkit-transition-duration: .4s;
-  -moz-transition-duration: .4s;
-  transition-duration: .4s;
-  -webkit-transition-timing-function: ease-in;
-  -moz-transition-timing-function: ease-in;
-  transition-timing-function: ease-in;
 }
