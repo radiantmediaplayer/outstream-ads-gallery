@@ -38,6 +38,7 @@
 
   // new player instance
   var rmp = new RadiantMP(elementID);
+  var fw = rmp.getFramework();
   var closeButton;
 
   var _trace = function (input) {
@@ -77,6 +78,7 @@
     // append close button to player container
     container.appendChild(closeButton);
     // fade in player upon adstarted event
+    fw.addClass(container, 'rmp-fade-in');
     container.style.opacity = 1;
     container.style.visibility = 'visible';
   };
