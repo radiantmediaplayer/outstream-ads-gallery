@@ -90,11 +90,6 @@
       _removePlayer();
       return;
     }
-    // if autoplay has been disabled due to lack of device support we show player 
-    // to allow a user interaction to start ad
-    if (!rmp.getAutoplayRequested()) {
-      _showPlayer();
-    }
   });
   // we have adstarted - we fade in player
   container.addEventListener('adstarted', _showPlayer);
