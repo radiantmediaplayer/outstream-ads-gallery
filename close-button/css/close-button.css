@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+#rmpPlayer {
+  margin: auto;
+}
+
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+
+.rmp-outstream-close-button {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 32px;
+  cursor: pointer;
+  background: rgba(0,0,0,0.6);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+.rmp-mobile .rmp-outstream-close-button {
+  left: 8px;
+  right: auto;
+}
+
+.rmp-container {
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition-property: opacity, visibility;
+  -moz-transition-property: opacity, visibility;
+  transition-property: opacity, visibility;
+  -webkit-transition-duration: .4s;
+  -moz-transition-duration: .4s;
+  transition-duration: .4s;
+  -webkit-transition-timing-function: ease-in;
+  -moz-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+}

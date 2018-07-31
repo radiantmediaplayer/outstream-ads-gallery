@@ -5,6 +5,7 @@ outstream-ads-gallery is an open-source collection of usage examples for outstre
 ## Examples
 - Basic outstream video ad, with ad-reload option on ad completion: [see it live here](https://www.radiantmediaplayer.com/docs/latest/gist/outstream-ads-gallery/basic-with-reload/)
 - One-shot outstream video ad: [see it live here](https://www.radiantmediaplayer.com/docs/latest/gist/outstream-ads-gallery/one-shot/)
+- Outstream ad with custom close button and fade-in upon ad start: [see it live here](https://www.radiantmediaplayer.com/docs/latest/gist/outstream-ads-gallery/close-button/)
 - Sticky outstream video ad: [see it live here](https://www.radiantmediaplayer.com/docs/latest/gist/outstream-ads-gallery/sticky/)
 - In-article outstream video ad, with ad-reload option on ad completion: [see it live here](https://www.radiantmediaplayer.com/docs/latest/gist/outstream-ads-gallery/in-article/)
 

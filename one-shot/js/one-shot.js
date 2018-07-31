@@ -1,6 +1,6 @@
 /**
  * @license Copyright (c) 2015-2018 Radiant Media Player 
- * outstream-ads-gallery 0.1.0 | https://github.com/radiantmediaplayer/outstream-ads-gallery
+ * outstream-ads-gallery 2.0.0 | https://github.com/radiantmediaplayer/outstream-ads-gallery
  */
 
 (function () {
@@ -21,6 +21,8 @@
     skin: 'outstream',
     autoplay: true,
     ads: true,
+    // by default we use Google IMA but we can also use rmp-vast for outstream ads
+    // adParser: 'rmp-vast',
     adOutStream: true,
     adTagUrl: 'https://www.radiantmediaplayer.com/vast/tags/inline-linear-2.xml',
     // we use client-side waterfalling in this case (optional)
@@ -31,36 +33,33 @@
 
   // new player instance
   var rmp = new RadiantMP(elementID);
-  // Radiant Media Player internal framework
-  var fw = rmp.getFramework();
 
-  var _removeElement = function(element) {
+  var _trace = function (input) {
+    if (window.console.trace && input) {
+      window.console.trace(input);
+    }
+  };
+
+  var _removeElement = function (element) {
     var parent = element.parentNode;
     if (parent) {
       try {
         parent.removeChild(element);
       } catch (e) {
-        fw.trace(e);
+        _trace(e);
       }
     }
   };
 
   // when destroy method finishes we clear listeners and remove player from DOM
   var _onDestroyCompleted = function () {
-    container.removeEventListener('destroyerror', _onDestroyCompleted);
     container.removeEventListener('destroycompleted', _onDestroyCompleted);
     _removeElement(container);
-    // we also remove sponsor message in this case (optional)
-    var sponsorMessage = document.getElementById('sponsor-message');
-    if (sponsorMessage) {
-      _removeElement(sponsorMessage);
-    }
   };
 
   // player needs be removed from page 
   // first we need to destroy it
   var _removePlayer = function () {
-    container.addEventListener('destroyerror', _onDestroyCompleted);
     container.addEventListener('destroycompleted', _onDestroyCompleted);
     rmp.destroy();
   };
@@ -69,6 +68,7 @@
   var _endPlayer = function () {
     container.removeEventListener('autoplayfailure', _endPlayer);
     container.removeEventListener('adcontentresumerequested', _endPlayer);
+    container.removeEventListener('addestroyed', _endPlayer);
     // nicely fade out player and remove it from DOM
     container.style.opacity = 0;
     container.style.visibility = 'hidden';
@@ -85,12 +85,14 @@
       return;
     }
   });
-  // when ad ends - adcontentresumerequested event - we fade out player and remove it from DOM
+  // when ad ends - adcontentresumerequested event for Google IMA or addestroyed event for rmp-vast 
+  // we fade out player and remove it from DOM
   // in case of autoplayfailure event we also need to remove it - note that autoplayfailure should 
   // be infrequent if you are using muted autoplay as recommended
   // whichever comes first
   container.addEventListener('autoplayfailure', _endPlayer);
   container.addEventListener('adcontentresumerequested', _endPlayer);
+  container.addEventListener('addestroyed', _endPlayer);
 
   rmp.init(settings);
 

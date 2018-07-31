@@ -18,18 +18,16 @@
     licenseKey: 'your-license-key',
     width: 640,
     height: 360,
-    skin: 'outstream',
     backgroundColor: 'DDDDDD',
+    skin: 'outstream',
+    autoplay: true,
+    // we disable fadeIn on ready since we will take care of it when adstarted event happens
+    fadeInPlayer: false,
     ads: true,
     // by default we use Google IMA but we can also use rmp-vast for outstream ads
     // adParser: 'rmp-vast',
-    // when player comes into view, it will autoplay ...
-    // also player is automatically played/paused when it becomes in/out of view with this option
-    viewablePlayPause: true,
-    // ... well muted autoplay to avoid Chrome/Safari to block autoplay with sound 
-    // and to comply with the coalition for better ads
-    muted: true,
     adOutStream: true,
+    adOutStreamMutedAutoplay: true,
     adTagReloadOnEnded: true,
     adTagUrl: 'https://www.radiantmediaplayer.com/vast/tags/inline-linear.xml',
     // we use client-side waterfalling in this case (optional)
@@ -40,6 +38,7 @@
 
   // new player instance
   var rmp = new RadiantMP(elementID);
+  var closeButton;
 
   var _trace = function (input) {
     if (window.console.trace && input) {
@@ -64,20 +63,35 @@
   // first we need to destroy it
   var _removePlayer = function () {
     container.removeEventListener('autoplayfailure', _removePlayer);
+    closeButton.removeEventListener('click', _removePlayer);
     container.addEventListener('destroycompleted', _onDestroyCompleted);
     rmp.destroy();
   };
 
-  // if Google IMA has been blocked by an ad-blocker or failed to load
-  // we need to remove the player from DOM
+  var _appendCloseButton = function () {
+    container.removeEventListener('adstarted', _appendCloseButton);
+    closeButton = document.createElement('div');
+    closeButton.className = 'rmp-outstream-close-button rmp-i rmp-i-close';
+    // interacting with close button will cause player to be removed from DOM
+    closeButton.addEventListener('click', _removePlayer);
+    // append close button to player container
+    container.appendChild(closeButton);
+    // fade in player upon adstarted event
+    container.style.opacity = 1;
+    container.style.visibility = 'visible';
+  };
+  // on adstarted we append close button
+  container.addEventListener('adstarted', _appendCloseButton);
+
   container.addEventListener('ready', function () {
+    // if Google IMA or rmp-vast has been blocked by an ad-blocker or failed to load
+    // we need to remove the player from DOM
     if (rmp.getAdParserBlocked()) {
       _removePlayer();
       return;
     }
   });
-
-  // on autoplay failure we remove player from DOM
+  // in case of autoplayfailure event we need to remove player from DOM
   container.addEventListener('autoplayfailure', _removePlayer);
 
   // init player after wiring events
