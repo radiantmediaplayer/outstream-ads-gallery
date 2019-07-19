@@ -25,6 +25,7 @@
     adParser: 'rmp-vast',
     adOutStream: true,
     skin: 'outstream',
+    adTagReloadOnEnded: false,
     // fade-in/fade-out effects are applied on sticky-container so we do not need them on the player 
     fadeInPlayer: false,
     adTagUrl: 'https://www.radiantmediaplayer.com/vast/tags/inline-linear-2.xml',

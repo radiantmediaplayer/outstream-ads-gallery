@@ -30,7 +30,6 @@
     // and to comply with the coalition for better ads
     muted: true,
     adOutStream: true,
-    adTagReloadOnEnded: true,
     adTagUrl: 'https://www.radiantmediaplayer.com/vast/tags/inline-linear.xml',
     // we use client-side waterfalling in this case (optional)
     adTagWaterfall: [

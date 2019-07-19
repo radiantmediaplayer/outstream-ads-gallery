@@ -21,6 +21,7 @@
     skin: 'outstream',
     autoplay: true,
     ads: true,
+    adTagReloadOnEnded: false,
     // by default we use Google IMA but we can also use rmp-vast for outstream ads
     // adParser: 'rmp-vast',
     adOutStream: true,
