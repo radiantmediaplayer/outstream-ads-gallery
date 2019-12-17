@@ -1,0 +1,23 @@
+{
+  "name": "outstream-ads-gallery",
+  "version": "2.1.0",
+  "author": "Radiant Media Player <support@radiantmediaplayer.com>",
+  "description": "A collection of examples for using Radiant Media Player with outstream video ads",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/radiantmediaplayer/outstream-ads-gallery.git"
+  },
+  "main": "basic-with-reload/js/basic-with-reload.js",
+  "keywords": [
+    "advertising",
+    "video",
+    "html5",
+    "javascript",
+    "outstream"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/radiantmediaplayer/outstream-ads-gallery/issues"
+  },
+  "homepage": "https://www.radiantmediaplayer.com/docs/latest/outstream-video-ads.html"
+}
