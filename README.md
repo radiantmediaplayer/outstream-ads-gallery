@@ -21,7 +21,10 @@ web. As such when autoplay of outstream video ads is requested with Radiant Medi
 ## Issues
 Issues should be submitted in this GitHub page. We will do our best to review them.
 
-## License
-outstream-ads-gallery examples are released under MIT
+## License for outstream-ads-gallery
+outstream-ads-gallery is released under MIT.
 
-Radiant Media Player is a commercial HTML5 video player and has its own license which can be found here: [https://www.radiantmediaplayer.com/terms-of-service.html](https://www.radiantmediaplayer.com/terms-of-service.html)
+## License for Radiant Media Player
+Radiant Media Player is a commercial HTML5 media player, not covered by the above MIT license. 
+Radiant Media Player license can be found here: [https://www.radiantmediaplayer.com/terms-of-service.html](https://www.radiantmediaplayer.com/terms-of-service.html). 
+You may request a free trial for Radiant Media Player at: https://www.radiantmediaplayer.com/free-trial.html.
