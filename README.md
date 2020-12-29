@@ -9,7 +9,7 @@ outstream-ads-gallery is an open-source collection of usage examples for outstre
 - Sticky outstream video ad: [see it live here](https://www.radiantmediaplayer.com/docs/latest/gist/outstream-ads-gallery/sticky/)
 - In-article outstream video ad, with ad-reload option on ad completion: [see it live here](https://www.radiantmediaplayer.com/docs/latest/gist/outstream-ads-gallery/in-article/)
 
-Additionally, you may also want to review our [picture in picture player extension](https://github.com/radiantmediaplayer/rmp-detachable-player) that also supports outstream video ads.
+Additionally, you may also want to review our [automatic picture in picture player extension](https://github.com/radiantmediaplayer/rmp-detachable-player) that also supports outstream video ads.
 
 ## Usage
 Download latest release from releases tab. Review each corresponding folder for player code examples. Adapt it to your project requirement.
@@ -26,5 +26,7 @@ outstream-ads-gallery is released under MIT.
 
 ## License for Radiant Media Player
 Radiant Media Player is a commercial HTML5 media player, not covered by the above MIT license. 
+
 Radiant Media Player license can be found here: [https://www.radiantmediaplayer.com/terms-of-service.html](https://www.radiantmediaplayer.com/terms-of-service.html). 
-You may request a free trial for Radiant Media Player at: https://www.radiantmediaplayer.com/free-trial.html.
+
+You may request a free trial for Radiant Media Player at: [https://www.radiantmediaplayer.com/free-trial.html](https://www.radiantmediaplayer.com/free-trial.html).
