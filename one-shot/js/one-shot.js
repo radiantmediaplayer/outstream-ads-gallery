@@ -1,6 +1,6 @@
 /**
- * @license Copyright (c) 2015-2020 Radiant Media Player 
- * outstream-ads-gallery 2.1.2 | https://github.com/radiantmediaplayer/outstream-ads-gallery
+ * @license Copyright (c) 2015-2021 Radiant Media Player 
+ * outstream-ads-gallery | https://github.com/radiantmediaplayer/outstream-ads-gallery
  */
 
 (function () {
