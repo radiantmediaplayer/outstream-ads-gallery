@@ -3,7 +3,7 @@
  * outstream-ads-gallery | https://github.com/radiantmediaplayer/outstream-ads-gallery
  */
 
-const elementID = 'rmpPlayer';
+const elementID = 'rmp';
 const container = document.getElementById(elementID);
 const stickyContainer = document.getElementById('sticky-container');
 
