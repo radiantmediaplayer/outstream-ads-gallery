@@ -44,11 +44,11 @@ const _onDestroyCompleted = () => {
 // player needs be removed from page 
 // first we need to destroy it
 const _removePlayer = function () {
-  container.addEventListener('destroycompleted', _onDestroyCompleted, { once: true });
+  rmp.one('destroycompleted', _onDestroyCompleted);
   rmp.destroy();
 };
 
-container.addEventListener('ready', function () {
+rmp.one('ready', function () {
   // if Google IMA has been blocked by an ad-blocker or failed to load
   // we need to remove the player from DOM
   if (rmp.getAdParserBlocked()) {

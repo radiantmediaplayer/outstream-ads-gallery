@@ -46,7 +46,7 @@ const _onDestroyCompleted = function () {
 // player needs be removed from page 
 // first we need to destroy it
 const _removePlayer = function () {
-  container.addEventListener('destroycompleted', _onDestroyCompleted);
+  rmp.one('destroycompleted', _onDestroyCompleted);
   rmp.destroy();
 };
 
@@ -63,9 +63,9 @@ const _appendCloseButton = function () {
   container.style.visibility = 'visible';
 };
 // on adstarted we append close button
-container.addEventListener('adstarted', _appendCloseButton, { once: true });
+rmp.one('adstarted', _appendCloseButton);
 
-container.addEventListener('ready', function () {
+rmp.one('ready', function () {
   // if Google IMA has been blocked by an ad-blocker or failed to load
   // we need to remove the player from DOM
   if (rmp.getAdParserBlocked()) {
