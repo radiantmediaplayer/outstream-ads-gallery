@@ -54,7 +54,7 @@ const _endPlayer = function () {
   container.style.visibility = 'hidden';
   setTimeout(function () {
     _removePlayer();
-  }, 400);
+  }, 200);
 };
 
 rmp.one('ready', function () {
@@ -62,12 +62,6 @@ rmp.one('ready', function () {
   // we need to remove the player from DOM
   if (rmp.getAdParserBlocked()) {
     console.log('AdParserBlocked - remove player');
-    _removePlayer();
-    return;
-  }
-  // if autoplay fails we remove player from DOM 
-  if (rmp.getAutoplayMode() === 'no-autoplay') {
-    console.log('no-autoplay - remove player');
     _removePlayer();
     return;
   }

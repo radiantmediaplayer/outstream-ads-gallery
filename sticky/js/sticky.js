@@ -4,7 +4,6 @@
  */
 
 const elementID = 'rmp';
-const container = document.getElementById(elementID);
 const stickyContainer = document.getElementById('sticky-container');
 
 const settings = {
@@ -49,19 +48,13 @@ const _removePlayer = function () {
   rmp.destroy();
 };
 
-// function to fade in sticky container
-const _showPlayer = function () {
-  stickyContainer.style.opacity = 1;
-  stickyContainer.style.visibility = 'visible';
-};
-
 // function to fade out sticky container
 const _endPlayer = function () {
   stickyContainer.style.opacity = 0;
   stickyContainer.style.visibility = 'hidden';
   setTimeout(function () {
     _removePlayer();
-  }, 400);
+  }, 200);
 };
 
 
@@ -73,16 +66,7 @@ rmp.one('ready', function () {
     _removePlayer();
     return;
   }
-  // if autoplay fails we remove player from DOM 
-  if (rmp.getAutoplayMode() === 'no-autoplay') {
-    console.log('no-autoplay - remove player');
-    _removePlayer();
-    return;
-  }
 });
-
-// we have adstarted - we fade in player
-rmp.one('adstarted', _showPlayer);
 
 // when ad ends - adcontentresumerequested event for Google IMA or addestroyed event for rmp-vast 
 // we fade out player and remove it from DOM

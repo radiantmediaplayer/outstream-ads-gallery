@@ -6,8 +6,6 @@
   right: 8px;
   width: 256px;
   height: 144px;
-  visibility: hidden;
-  opacity: 0;
   -webkit-transition-property: opacity, visibility;
   -moz-transition-property: opacity, visibility;
   transition-property: opacity, visibility;

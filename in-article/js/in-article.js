@@ -11,21 +11,19 @@ const settings = {
   width: 640,
   height: 360,
   skin: 'outstream',
-  backgroundColor: 'DDDDDD',
   ads: true,
   // by default we use Google IMA but we can also use rmp-vast for outstream ads
   // adParser: 'rmp-vast',
   // when player comes into view, it will autoplay ...
-  // also player is automatically played/paused when it becomes in/out of view with this option
-  viewablePlayPause: true,
+  viewableAutoplay: true,
   // ... well muted autoplay to avoid Chrome/Safari to block autoplay with sound 
   // and to comply with the coalition for better ads
   muted: true,
   adOutStream: true,
-  adTagUrl: 'https://www.radiantmediaplayer.com/vast/tags/inline-linear.xml',
+  adTagUrl: 'https://www.radiantmediaplayer.com/vast/tags/inline-linear-1.xml',
   // we use client-side waterfalling in this case (optional)
   adTagWaterfall: [
-    'https://www.radiantmediaplayer.com/vast/tags/inline-linear-1.xml'
+    'https://www.radiantmediaplayer.com/vast/tags/inline-linear.xml'
   ]
 };
 
@@ -56,12 +54,6 @@ rmp.one('ready', function () {
   // we need to remove the player from DOM
   if (rmp.getAdParserBlocked()) {
     console.log('AdParserBlocked - remove player');
-    _removePlayer();
-    return;
-  }
-  // if autoplay fails we remove player from DOM 
-  if (rmp.getAutoplayMode() === 'no-autoplay') {
-    console.log('no-autoplay - remove player');
     _removePlayer();
     return;
   }

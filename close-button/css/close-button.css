@@ -27,11 +27,6 @@
   right: auto;
 }
 
-.rmp-container {
-  visibility: hidden;
-  opacity: 0;
-}
-
 .rmp-fade-in {
   -webkit-transition-property: opacity, visibility;
   -moz-transition-property: opacity, visibility;
