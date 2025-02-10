@@ -1,15 +1,16 @@
 {
   "name": "outstream-ads-gallery",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "author": "Radiant Media Player <support@radiantmediaplayer.com>",
-  "description": "A collection of examples for using Radiant Media Player with outstream video ads",
+  "description": "A collection of examples for using Radiant Media Player with outstream video advertisement",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/radiantmediaplayer/outstream-ads-gallery.git"
   },
   "main": "basic-with-reload/js/basic-with-reload.js",
   "keywords": [
-    "advertising",
+    "advertisement",
+    "ads",
     "video",
     "html5",
     "javascript",

@@ -60,14 +60,18 @@ const _appendCloseButton = function () {
 // on adstarted we append close button
 rmp.one('adstarted', _appendCloseButton);
 
-rmp.one('ready', function () {
-  // if Google IMA has been blocked by an ad-blocker or failed to load
-  // we need to remove the player from DOM
-  if (rmp.getAdParserBlocked()) {
-    console.log('AdParserBlocked - remove player');
-    _removePlayer();
-    return;
-  }
+rmp.one('ready', async function () {
+  // if Google IMA has been blocked by an ad-blocker or failed to load we need to remove the player from DOM
+  try {
+    const adBlockDetected = await rmp.getAdBlock();
+    if (adBlockDetected) {
+      console.log('ad-blocker detected - remove player');
+      _removePlayer();
+    }
+  } catch(warning) {
+    // getAdBlock requested but ads setting is false and this is not a AWS Media Tailor stream
+    console.warn(warning);
+  };
 });
 
 // init player after wiring events
